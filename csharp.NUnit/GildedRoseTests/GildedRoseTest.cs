@@ -35,4 +35,34 @@ public class GildedRoseTest
                 Assert.AreEqual(1, items[0].SellIn);
                 Assert.AreEqual(1, items[0].Quality);
             }
+
+    [Test]
+            public void Sulfuras_DoesNotChangeQualityOrSellIn()
+            {
+                // Arrange
+                var items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80 } };
+                var app = new GildedRose(items);
+
+                // Act
+                app.UpdateQuality();
+
+                // Assert
+                Assert.AreEqual(0, items[0].SellIn);
+                Assert.AreEqual(80, items[0].Quality);
+            }
+
+            [Test]
+            public void BackstagePasses_IncreaseQualityAsSellInApproaches()
+            {
+                // Arrange
+                var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 11, Quality = 10 } };
+                var app = new GildedRose(items);
+
+                // Act
+                app.UpdateQuality();
+
+                // Assert
+                Assert.AreEqual(10, items[0].SellIn);
+                Assert.AreEqual(11, items[0].Quality);
+            }
 }
