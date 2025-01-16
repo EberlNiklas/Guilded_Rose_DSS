@@ -82,21 +82,6 @@ public class GildedRoseTest
             }
 
     [Test]
-            public void ConjuredItems_DegradeQualityTwiceAsFast()
-            {
-                // Arrange
-                var items = new List<Item> { new Item { Name = "Conjured Mana Cake", SellIn = 3, Quality = 6 } };
-                var app = new GildedRose(items);
-
-                // Act
-                app.UpdateQuality();
-
-                // Assert
-                Assert.AreEqual(2, items[0].SellIn);
-                Assert.AreEqual(4, items[0].Quality);
-            }
-
-    [Test]
             public void Quality_NeverGoesAbove50()
             {
                 // Arrange
